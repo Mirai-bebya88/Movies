@@ -20,10 +20,11 @@ struct Movie: Decodable {
     let posterImage: String
     let adult: Bool
     let releaseDate: String
+    let id: Int
 
     enum CodingKeys: String, CodingKey {
         case name = "original_title"
-        case popularity, adult
+        case popularity, adult, id
         case posterImage = "poster_path"
         case releaseDate = "release_date"
     }

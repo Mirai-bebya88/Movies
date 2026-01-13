@@ -16,37 +16,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOB-kb-6F6">
-                                <rect key="frame" x="284" y="118" width="75" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOB-kb-6F6">
+                                <rect key="frame" x="290" y="127.99999999999999" width="48" height="34.333333333333329"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                <connections>
+                                    <action selector="favouriteButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ORm-UO-ObI"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIC-CC-WuN">
-                                <rect key="frame" x="45" y="183" width="43" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="release date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMz-xX-nSK">
-                                <rect key="frame" x="27" y="376" width="162" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="adult" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nf9-wr-fIQ">
-                                <rect key="frame" x="45" y="298" width="39" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="d7b-Fi-yjq">
+                                <rect key="frame" x="147.66666666666666" y="183" width="98" height="120.66666666666669"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIC-CC-WuN">
+                                        <rect key="frame" x="0.0" y="0.0" width="98" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMz-xX-nSK">
+                                        <rect key="frame" x="0.0" y="100.33333333333331" width="98" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemMintColor"/>
+                        <constraints>
+                            <constraint firstItem="vOB-kb-6F6" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="290" id="8Bj-0z-dfA"/>
+                            <constraint firstItem="d7b-Fi-yjq" firstAttribute="top" secondItem="vOB-kb-6F6" secondAttribute="bottom" constant="20.666666666666202" id="Ccd-BL-QdO"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="vOB-kb-6F6" secondAttribute="trailing" constant="55" id="FgZ-LX-ZXD"/>
+                            <constraint firstItem="d7b-Fi-yjq" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="RMy-7K-vda"/>
+                            <constraint firstItem="vOB-kb-6F6" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="10" id="yZd-9i-ZrT"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="favouriteButton" destination="vOB-kb-6F6" id="JCy-8o-UyR"/>
+                        <outlet property="movieLabel" destination="VIC-CC-WuN" id="0fm-J8-ubI"/>
+                        <outlet property="releaseDateLabel" destination="RMz-xX-nSK" id="klm-vq-2E2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -54,8 +64,9 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
+        <systemColor name="systemMintColor">
+            <color red="0.0" green="0.78431372549019607" blue="0.70196078431372544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

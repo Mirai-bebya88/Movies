@@ -66,11 +66,11 @@ extension MoviesViewController: UITableViewDataSource {
 
 extension MoviesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        
         
         let sb = UIStoryboard(name: "MoviesDetail", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "MoviesDetailViewController") as! MoviesDetailViewController
-        vc.movie = movies[indexPath.row]
+        vc.setMovie(movies[indexPath.row]) 
         navigationController?.pushViewController(vc, animated: true)
     }
 }
