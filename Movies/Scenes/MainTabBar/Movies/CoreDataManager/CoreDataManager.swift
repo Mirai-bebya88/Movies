@@ -12,6 +12,8 @@ class CoreDataManager {
     
     static let shared = CoreDataManager()
     
+    var onFavouritesChanged: (() -> Void)?
+    
     private init() {}
     
     var context: NSManagedObjectContext? {
@@ -33,6 +35,7 @@ class CoreDataManager {
         
         do {
             try context.save()
+            onFavouritesChanged?()
             print("Saved to favourites")
         } catch {
             print("Error saving favourite: \(error)")
@@ -49,6 +52,7 @@ class CoreDataManager {
             let results = try context.fetch(request)
             results.forEach { context.delete($0) }
             try context.save()
+            onFavouritesChanged?()
             print("Removed from favourites")
         } catch {
             print("Error removing favourite: \(error)")

@@ -8,21 +8,55 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Favorite-->
+        <!--Favourite Movies-->
         <scene sceneID="alm-qX-8DI">
             <objects>
-                <viewController storyboardIdentifier="FavoriteID" id="zK1-8C-KYP" customClass="FavoriteViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zK1-8C-KYP" customClass="FavoriteViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kkc-je-rKb">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WTg-Yt-rCQ">
+                                <rect key="frame" x="0.0" y="224" width="393" height="560"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="HdN-no-AAa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="WTg-Yt-rCQ" firstAttribute="leading" secondItem="HdN-no-AAa" secondAttribute="leading" id="00F-Ma-XAb"/>
+                            <constraint firstItem="HdN-no-AAa" firstAttribute="trailing" secondItem="WTg-Yt-rCQ" secondAttribute="trailing" id="MFO-1h-rqJ"/>
+                            <constraint firstItem="WTg-Yt-rCQ" firstAttribute="top" secondItem="HdN-no-AAa" secondAttribute="top" id="W1I-HY-FBV"/>
+                            <constraint firstItem="HdN-no-AAa" firstAttribute="bottom" secondItem="WTg-Yt-rCQ" secondAttribute="bottom" id="eOC-cF-bLf"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favorite" image="star.fill" catalog="system" id="hTM-ke-lfr"/>
+                    <navigationItem key="navigationItem" title="Favourite Movies" id="F04-hc-v7M"/>
+                    <connections>
+                        <outlet property="tableView" destination="WTg-Yt-rCQ" id="69l-a3-67b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0K2-Xn-sbd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="834" y="814"/>
+            <point key="canvasLocation" x="1759.5419847328244" y="813.38028169014092"/>
+        </scene>
+        <!--Favorite-->
+        <scene sceneID="aCj-oQ-rei">
+            <objects>
+                <navigationController storyboardIdentifier="FavoriteID" automaticallyAdjustsScrollViewInsets="NO" id="4LI-y5-rcn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Favorite" image="star.fill" catalog="system" id="hTM-ke-lfr"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="wKc-Fo-w1k">
+                        <rect key="frame" x="0.0" y="118" width="393" height="106"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zK1-8C-KYP" kind="relationship" relationship="rootViewController" id="cIK-CG-t4I"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fYE-OY-LsV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="832.82442748091603" y="813.38028169014092"/>
         </scene>
     </scenes>
     <resources>

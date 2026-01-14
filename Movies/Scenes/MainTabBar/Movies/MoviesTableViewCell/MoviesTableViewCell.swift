@@ -17,7 +17,6 @@ class MoviesTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     func configure(with movie: Movie) {
@@ -28,4 +27,15 @@ class MoviesTableViewCell: UITableViewCell {
         movieImage.kf.indicatorType = .activity
         movieImage.kf.setImage(with: url)
     }
+    
+    func configure(with favourite: FavouriteMovie) {
+            name.text = favourite.name
+            popularity.text = String(format: "%.1f", favourite.popularity)
+            
+            if let posterPath = favourite.posterImage {
+                let url = URL(string: "https://image.tmdb.org/t/p/w300/\(posterPath)")
+                movieImage.kf.indicatorType = .activity
+                movieImage.kf.setImage(with: url)
+            }
+        }
 }
