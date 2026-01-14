@@ -9,61 +9,51 @@ import UIKit
 
 class MoviesDetailViewController: UIViewController {
     
-    
     @IBOutlet private weak var movieLabel: UILabel!
     @IBOutlet private weak var releaseDateLabel: UILabel!
     @IBOutlet private weak var favouriteButton: UIButton!
     
-    
-    private var movie: Movie?
-    private var isFavourite: Bool = false
+    private var viewModel: MoviesDetailViewModel?
     
     func setMovie(_ movie: Movie) {
-            self.movie = movie
-        }
-
+        viewModel = MoviesDetailViewModel(movie: movie)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let movie = movie else {
-                    navigationController?.popViewController(animated: true)
-                    return
-                }
-                
-                setupUI(with: movie)
-                checkFavouriteStatus(for: movie)
+        guard let viewModel = viewModel else {
+            navigationController?.popViewController(animated: true)
+            return
+        }
         
+        viewModel.delegate = self
+        setupUI()
     }
     
-    private func setupUI(with movie: Movie) {
-        movieLabel.text = movie.name
-            releaseDateLabel.text = "Release: \(movie.releaseDate)"
-            }
+    private func setupUI() {
+        guard let viewModel = viewModel else { return }
         
-        private func checkFavouriteStatus(for movie: Movie) {
-            isFavourite = CoreDataManager.shared.isFavourite(movie: movie)
-            updateFavouriteButton()
-        }
-        
-        private func updateFavouriteButton() {
-            let imageName = isFavourite ? "heart.fill" : "heart"
-            let image = UIImage(systemName: imageName)
-            favouriteButton.setImage(image, for: .normal)
-            favouriteButton.tintColor = isFavourite ? .red : .gray
-        }
+        movieLabel.text = viewModel.movieName
+        releaseDateLabel.text = viewModel.releaseDate
+        updateFavouriteButton(isFavourite: viewModel.isFavourite)
+    }
+    
+    private func updateFavouriteButton(isFavourite: Bool) {
+        let imageName = isFavourite ? "heart.fill" : "heart"
+        let image = UIImage(systemName: imageName)
+        favouriteButton.setImage(image, for: .normal)
+        favouriteButton.tintColor = isFavourite ? .red : .gray
+    }
     
     
     @IBAction func favouriteButtonTapped(_ sender: UIButton) {
-        guard let movie = movie else { return }
-                
-                if isFavourite {
-                    CoreDataManager.shared.removeFromFavourites(movie: movie)
-                } else {
-    
-                    CoreDataManager.shared.addToFavourites(movie: movie)
-                }
-                
-                isFavourite.toggle()
-                updateFavouriteButton()
-            }
+        viewModel?.toggleFavourite()
+    }
+}
+
+extension MoviesDetailViewController: MoviesDetailViewModelDelegate {
+    func favouriteStatusDidChange(isFavourite: Bool) {
+        updateFavouriteButton(isFavourite: isFavourite)
+    }
 }

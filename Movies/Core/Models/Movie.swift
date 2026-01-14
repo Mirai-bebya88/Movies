@@ -5,15 +5,6 @@
 //  Created by elene malakmadze on 09.01.26.
 //
 
-
-struct MovieResponse: Decodable {
-    let movies: [Movie]
-    
-    enum CodingKeys: String, CodingKey {
-        case movies = "results"
-    }
-}
-
 struct Movie: Decodable {
     let name: String
     let popularity: Double

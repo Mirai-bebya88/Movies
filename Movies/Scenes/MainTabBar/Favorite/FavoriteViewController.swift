@@ -11,19 +11,14 @@ class FavoriteViewController: UIViewController {
     
    @IBOutlet private weak var tableView: UITableView!
     
-    private var favourites: [FavouriteMovie] = []
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        setupTableView()
-        fetchFavourites()
+    private let viewModel = FavouriteViewModel()
         
-        CoreDataManager.shared.onFavouritesChanged = {[weak self] in
-                    self?.fetchFavourites()
-                }
-    }
-    
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            setupTableView()
+            setupViewModel()
+            viewModel.fetchFavourites()
+        }
 
     private func setupTableView() {
             tableView.dataSource = self
@@ -34,20 +29,25 @@ class FavoriteViewController: UIViewController {
             )
         }
         
-        private func fetchFavourites() {
-            favourites = CoreDataManager.shared.fetchAllFavourites()
-            tableView.reloadData()
+    private func setupViewModel() {
+            viewModel.delegate = self
         }
+}
+
+extension FavoriteViewController: FavouriteViewModelDelegate {
+    func favouritesDidUpdate() {
+        tableView.reloadData()
+    }
 }
 
 extension FavoriteViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        favourites.count
+        viewModel.numberOfFavourites
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MoviesTableViewCell", for: indexPath) as! MoviesTableViewCell
-        cell.configure(with: favourites[indexPath.row])
+        cell.configure(with: viewModel.favourite(at: indexPath.row))
         return cell
     }
 }
